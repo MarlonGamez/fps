@@ -9,6 +9,7 @@ extends CharacterBody3D
 
 var weapon: Weapon
 var weapon_index := 0
+
 var bullet = load("res://objects/bullet.tscn")
 var bullet_inst
 
@@ -219,36 +220,19 @@ func action_shoot():
 			raycast.target_position.y = offset_y
 
 			bullet_inst = bullet.instantiate()
-			bullet_inst.position = to_global(head.position + Vector3(offset_x, offset_y, 0))
-			bullet_inst.transform.basis = raycast.global_transform.basis
+			bullet_inst.look_at_from_position(head.global_position, to_global(head.position + camera.transform.translated_local(raycast.target_position).origin))
+			bullet_inst.position = head.global_position
 			bullet_inst.time_spawned = Time.get_unix_time_from_system()
 			bullet_inst.lifetime = weapon.bullet_lifetime
 			bullet_inst.speed = weapon.bullet_speed
+			bullet_inst.grav = weapon.bullet_grav
+			bullet_inst.damage = weapon.damage
+			bullet_inst.spawner_group= "player"
 			get_parent().add_child(bullet_inst)
-
-
-			raycast.force_raycast_update()
-
-			if !raycast.is_colliding(): continue # Don't create impact when raycast didn't hit
-
-			var collider = raycast.get_collider()
 
 			# Hitting an enemy
 
-			if collider.has_method("damage"):
-				collider.damage(weapon.damage)
 
-			# Creating an impact animation
-
-			var impact = preload("res://objects/impact.tscn")
-			var impact_instance = impact.instantiate()
-
-			impact_instance.play("shot")
-
-			get_tree().root.add_child(impact_instance)
-
-			impact_instance.position = raycast.get_collision_point() + (raycast.get_collision_normal() / 10)
-			impact_instance.look_at(camera.global_transform.origin, Vector3.UP, true)
 
 # Toggle between available weapons (listed in 'weapons')
 

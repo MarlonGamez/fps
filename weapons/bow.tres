@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://dmmfjbxcncndv"]
+
+[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="1_jva0t"]
+[ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://models/blaster.glb" id="2_yuyan"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="3_cuk8r"]
+
+[resource]
+script = ExtResource("3_cuk8r")
+model = ExtResource("2_yuyan")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 180, 0)
+muzzle_position = Vector3(0.1, -0.4, 1.5)
+cooldown = 1.0
+max_distance = 20
+damage = 47.738
+spread = 0.127
+shot_count = 1
+knockback = 40
+bullet_speed = 20.233
+bullet_grav = 10.593
+bullet_lifetime = 10.226
+sound_shoot = "sounds/blaster.ogg"
+crosshair = ExtResource("1_jva0t")
