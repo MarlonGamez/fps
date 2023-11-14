@@ -43,7 +43,7 @@ signal health_updated
 @onready var muzzle = $Head/Camera/SubViewportContainer/SubViewport/CameraItem/Muzzle
 @onready var container = $Head/Camera/SubViewportContainer/SubViewport/CameraItem/Container
 @onready var sound_footsteps = $SoundFootsteps
-@onready var blaster_cooldown = $Cooldown
+@onready var weapon_cooldown = $Cooldown
 
 @export var crosshair:TextureRect
 
@@ -191,47 +191,7 @@ func action_jump():
 func action_shoot():
 
 	if Input.is_action_pressed("shoot"):
-
-		if !blaster_cooldown.is_stopped(): return # Cooldown for shooting
-
-		Audio.play(weapon.sound_shoot)
-
-		container.position.z += 0.25 # Knockback of weapon visual
-		camera.rotation.x += 0.025 # Knockback of camera
-		movement_velocity += Vector3(0, 0, weapon.knockback) # Knockback
-
-		# Set muzzle flash position, play animation
-
-		muzzle.play("default")
-
-		muzzle.rotation_degrees.z = randf_range(-45, 45)
-		muzzle.scale = Vector3.ONE * randf_range(0.40, 0.75)
-		muzzle.position = container.position - weapon.muzzle_position
-
-		blaster_cooldown.start(weapon.cooldown)
-
-		# Shoot the weapon, amount based on shot count
-
-		for n in weapon.shot_count:
-
-			var offset_x = randf_range(-weapon.spread, weapon.spread)
-			var offset_y = randf_range(-weapon.spread, weapon.spread)
-			raycast.target_position.x = offset_x
-			raycast.target_position.y = offset_y
-
-			bullet_inst = bullet.instantiate()
-			bullet_inst.look_at_from_position(head.global_position, to_global(head.position + camera.transform.translated_local(raycast.target_position).origin))
-			bullet_inst.position = head.global_position
-			bullet_inst.time_spawned = Time.get_unix_time_from_system()
-			bullet_inst.lifetime = weapon.bullet_lifetime
-			bullet_inst.speed = weapon.bullet_speed
-			bullet_inst.grav = weapon.bullet_grav
-			bullet_inst.damage = weapon.damage
-			bullet_inst.spawner_group= "player"
-			get_parent().add_child(bullet_inst)
-
-			# Hitting an enemy
-
+		weapon.fire(self)
 
 
 # Toggle between available weapons (listed in 'weapons')
@@ -282,7 +242,7 @@ func change_weapon():
 
 	# Set weapon data
 
-	raycast.target_position = Vector3(0, 0, -1) * weapon.max_distance
+	# raycast.target_position = Vector3(0, 0, -1) * weapon.max_distance
 	crosshair.texture = weapon.crosshair
 
 func damage(amount):
