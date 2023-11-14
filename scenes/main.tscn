@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=12 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="7_cabne"]
 [ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="7_wggef"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
+[ext_resource type="MeshLibrary" uid="uid://c8lcx1muox05o" path="res://gridmaps/dungeon.meshlib" id="10_2mr4f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("3_w27de")
@@ -118,5 +119,14 @@ transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 12, 2.5, -
 transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 5, 0.5, 5.5)
 
 [node name="Decoration" type="Node" parent="."]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("10_2mr4f")
+cell_size = Vector3(1.5, 1.35, 1.5)
+cell_scale = 1.5
+data = {
+"cells": PackedInt32Array(5, 0, 1048581, 131076, 65535, 1048585, 65541, 1, 1048583, 4, 65534, 1048583, 65541, 0, 9, 131077, 65535, 7, 65540, 0, 1441804, 65540, 1, 7, 65542, 0, 1441804, 65542, 1, 7, 65540, 2, 7, 65541, 2, 7, 65542, 2, 7, 196611, 65535, 7, 196611, 0, 7, 196611, 65534, 7, 196610, 65534, 7, 196610, 65535, 7, 196610, 0, 7, 196609, 0, 7, 196609, 65535, 7, 196609, 65534, 7, 65541, 3, 7, 65543, 0, 1441805, 65543, 1, 1441805, 65539, 1, 1048589, 65539, 2, 1048589, 65540, 3, 1048588, 65542, 3, 1048588, 65543, 2, 1441805, 131077, 65534, 13, 131078, 65535, 1441805, 131076, 65534, 13, 131076, 0, 12)
+}
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
