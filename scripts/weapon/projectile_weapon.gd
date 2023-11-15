@@ -31,42 +31,36 @@ var bullet = load("res://objects/bullet.tscn")
 var bullet_inst
 
 func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
-    if !wielder.weapon_cooldown.is_stopped(): return # Cooldown for shooting
+	if !wielder.weapon_cooldown.is_stopped(): return # Cooldown for shooting
 
-    if "camera" in wielder:
-        Audio.play(sound_shoot)
-        wielder.container.position.z += 0.25 # Knockback of weapon visual
-        wielder.camera.rotation.x += 0.025 # Knockback of camera
-        wielder.movement_velocity += Vector3(0, 0, knockback) # Knockback
+	if "camera" in wielder:
+		Audio.play(sound_shoot)
+		wielder.container.position.z += 0.25 # Knockback of weapon visual
+		wielder.camera.rotation.x += 0.025 # Knockback of camera
+		wielder.movement_velocity += Vector3(0, 0, knockback) # Knockback
 
-    # Set muzzle flash position, play animation
+	# Set muzzle flash position, play animation
 
-    if "muzzle" in wielder:
-        wielder.muzzle.play("default")
+	if "muzzle" in wielder:
+		wielder.muzzle.play("default")
 
-        wielder.muzzle.rotation_degrees.z = randf_range(-45, 45)
-        wielder.muzzle.scale = Vector3.ONE * randf_range(0.40, 0.75)
-        wielder.muzzle.position = wielder.container.position - muzzle_position
+		wielder.muzzle.rotation_degrees.z = randf_range(-45, 45)
+		wielder.muzzle.scale = Vector3.ONE * randf_range(0.40, 0.75)
+		wielder.muzzle.position = wielder.container.position - muzzle_position
 
-    wielder.weapon_cooldown.start(cooldown)
+	wielder.weapon_cooldown.start(cooldown)
 
-    # Shoot the weapon, amount based on shot count
+	# Shoot the weapon, amount based on shot count
 
-    for n in shot_count:
-        var target_pos: Vector3 = Vector3(randf_range(-spread, spread), randf_range(-spread, spread), -1 * max_distance)
-        # var offset_x = randf_range(-spread, spread)
-        # var offset_y = randf_range(-spread, spread)
-        # wielder.raycast.target_position = Vector3(0, 0, -1) * max_distance
-        # wielder.raycast.target_position.x = offset_x
-        # wielder.raycast.target_position.y = offset_y
-
-        bullet_inst = bullet.instantiate()
-        bullet_inst.look_at_from_position(wielder.to_global(head_pos), wielder.to_global(head_pos + head_aimer.transform.translated_local(target_pos).origin))
-        bullet_inst.position = wielder.to_global(head_pos)
-        bullet_inst.time_spawned = Time.get_unix_time_from_system()
-        bullet_inst.lifetime = bullet_lifetime
-        bullet_inst.speed = bullet_speed
-        bullet_inst.grav = bullet_grav
-        bullet_inst.damage = damage
-        bullet_inst.spawner_group= "player"
-        wielder.get_parent().add_child(bullet_inst)
+	for n in shot_count:
+		var target_pos: Vector3 = Vector3(randf_range(-spread, spread), randf_range(-spread, spread), max_distance)
+		bullet_inst = bullet.instantiate()
+		bullet_inst.look_at_from_position(wielder.to_global(head_pos), wielder.to_global(head_pos + head_aimer.transform.translated_local(target_pos).origin))
+		bullet_inst.position = wielder.to_global(head_pos)
+		bullet_inst.time_spawned = Time.get_unix_time_from_system()
+		bullet_inst.lifetime = bullet_lifetime
+		bullet_inst.speed = bullet_speed
+		bullet_inst.grav = bullet_grav
+		bullet_inst.damage = damage
+		bullet_inst.spawner_groups = wielder.get_groups()
+		wielder.get_parent().add_child(bullet_inst)

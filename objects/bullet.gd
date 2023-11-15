@@ -6,19 +6,20 @@ var grav: float
 var time_spawned: float
 var lifetime: float
 var damage: float
-var spawner_group: String
+var spawner_groups: Array[StringName]
 
 func _process(delta):
 	var time_since_spawn: float = Time.get_unix_time_from_system() - time_spawned
-	position += transform.basis * Vector3(0, 0, -speed) * delta
+	position += transform.basis * Vector3(0, 0, speed) * delta
 	position += transform.basis * Vector3(0, -grav, 0) * time_since_spawn * delta
 	if time_since_spawn > lifetime:
 		if not is_queued_for_deletion():
 			queue_free()
 
 func _on_body_entered(body: Node3D):
-	if body.is_in_group(spawner_group):
-		return
+	for group in spawner_groups:
+		if body.is_in_group(group):
+			return
 
 	if body.has_method("damage"):
 		body.damage(damage)

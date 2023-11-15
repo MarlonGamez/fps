@@ -33,7 +33,7 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	hitbox_inst = hitbox_res.instantiate()
 	hitbox_inst.damage = damage
 	hitbox_inst.lifetime = 10
-	hitbox_inst.spawner_group = "player"
+	hitbox_inst.spawner_groups = wielder.get_groups()
 	hitbox_inst.position = hitboxes[0].position
 	head_aimer.add_child(hitbox_inst)
 
