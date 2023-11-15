@@ -7,31 +7,31 @@
 [sub_resource type="Resource" id="Resource_ukkqc"]
 script = ExtResource("1_n2mdk")
 delay = 0.0
-duration = 0.08
+duration = 0.05
 position = Vector3(1.4, 0, -0.9)
 
 [sub_resource type="Resource" id="Resource_buy77"]
 script = ExtResource("1_n2mdk")
 delay = 0.0
-duration = 0.08
+duration = 0.05
 position = Vector3(1, 0, -1)
 
 [sub_resource type="Resource" id="Resource_78ww7"]
 script = ExtResource("1_n2mdk")
 delay = 0.0
-duration = 0.08
+duration = 0.05
 position = Vector3(0, 0, -1.4)
 
 [sub_resource type="Resource" id="Resource_mldas"]
 script = ExtResource("1_n2mdk")
 delay = 0.0
-duration = 0.08
+duration = 0.05
 position = Vector3(-1, 0, -1)
 
 [sub_resource type="Resource" id="Resource_3o8r8"]
 script = ExtResource("1_n2mdk")
 delay = 0.0
-duration = 0.08
+duration = 0.05
 position = Vector3(-1.4, 0, -0.9)
 
 [resource]
@@ -39,8 +39,8 @@ script = ExtResource("1_jrlc2")
 model = ExtResource("2_f3vyp")
 position = Vector3(0, 0, 0)
 rotation = Vector3(0, 0, 0)
-cooldown = 1.0
-damage = 25.0
+cooldown = 0.5
+damage = 50.0
 knockback = 40
 hitboxes = Array[ExtResource("1_n2mdk")]([SubResource("Resource_ukkqc"), SubResource("Resource_buy77"), SubResource("Resource_78ww7"), SubResource("Resource_mldas"), SubResource("Resource_3o8r8")])
 bullet_speed = 1.0

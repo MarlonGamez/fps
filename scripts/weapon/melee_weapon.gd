@@ -29,16 +29,23 @@ func fire(wielder):
 	if !wielder.weapon_cooldown.is_stopped(): return
 
 	wielder.weapon_cooldown.start(cooldown)
+	print("sword swing")
+	hitbox_inst = hitbox_res.instantiate()
+	hitbox_inst.damage = damage
+	hitbox_inst.lifetime = 10
+	hitbox_inst.spawner_group = "player"
+	hitbox_inst.position = hitboxes[0].position
+	wielder.camera.add_child(hitbox_inst)
 
-	for hb in hitboxes:
-		await wielder.get_tree().create_timer(hb.delay).timeout
-		hitbox_inst = hitbox_res.instantiate()
-		hitbox_inst.time_spawned = Time.get_unix_time_from_system()
-		hitbox_inst.lifetime = hb.duration
-		hitbox_inst.damage = damage
-		hitbox_inst.spawner_group = "player"
-		hitbox_inst.position = wielder.head.to_global(wielder.camera.transform.translated_local(hb.position).origin)
+	for i in range(hitboxes.size()-1):
+		print("hitbox %s to %s" % [i, i+1])
+		var from = hitboxes[i]
+		var to = hitboxes[i+1]
+		# var distance = from.position.distance_to(to.position)
+		# var speed = distance * to.duration
+		var direction = ((to.position - from.position) / to.duration)
+		hitbox_inst.velocity = direction
+		await wielder.get_tree().create_timer(to.duration).timeout
 
-		wielder.get_parent().add_child(hitbox_inst)
-		await wielder.get_tree().create_timer(hb.duration).timeout
+	hitbox_inst.queue_free()
 

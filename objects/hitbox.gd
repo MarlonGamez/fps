@@ -5,12 +5,16 @@ var time_spawned: float
 var lifetime: float
 var damage: float
 var spawner_group: String
+var velocity: Vector3
 
-func _process(_delta):
-	var time_since_spawn: float = Time.get_unix_time_from_system() - time_spawned
-	if time_since_spawn > lifetime:
-		if not is_queued_for_deletion():
-			queue_free()
+func _physics_process(delta):
+	position += transform.basis * velocity * delta
+
+# func _process(_delta):
+	# var time_since_spawn: float = Time.get_unix_time_from_system() - time_spawned
+	# if time_since_spawn > lifetime:
+	# 	if not is_queued_for_deletion():
+	# 		queue_free()
 
 func _on_body_entered(body: Node3D):
 	if body.is_in_group(spawner_group):
@@ -31,5 +35,5 @@ func _on_body_entered(body: Node3D):
 
 	impact_instance.position = global_position
 
-	if not is_queued_for_deletion():
-			queue_free()
+	# if not is_queued_for_deletion():
+	# 		queue_free()
