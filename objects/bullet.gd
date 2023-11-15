@@ -24,9 +24,7 @@ func _on_body_entered(body: Node3D):
 	if body.has_method("damage"):
 		body.damage(damage)
 
-	print("Damage!")
 	# Creating an impact animation
-
 	var impact = preload("res://objects/impact.tscn")
 	var impact_instance = impact.instantiate()
 

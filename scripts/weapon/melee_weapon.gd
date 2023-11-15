@@ -29,7 +29,6 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	if !wielder.weapon_cooldown.is_stopped(): return
 
 	wielder.weapon_cooldown.start(cooldown)
-	print("sword swing")
 	hitbox_inst = hitbox_res.instantiate()
 	hitbox_inst.damage = damage
 	hitbox_inst.lifetime = 10
@@ -38,7 +37,6 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	head_aimer.add_child(hitbox_inst)
 
 	for i in range(hitboxes.size()-1):
-		print("hitbox %s to %s" % [i, i+1])
 		var from = hitboxes[i]
 		var to = hitboxes[i+1]
 		# var distance = from.position.distance_to(to.position)

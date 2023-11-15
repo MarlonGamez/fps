@@ -1,11 +1,4 @@
-extends CharacterBody3D
-
-@export_subgroup("Properties")
-@export var movement_speed = 5
-@export var jump_strength = 8
-
-@export_subgroup("Weapons")
-@export var weapons: Array[Weapon] = []
+extends Entity
 
 var weapon: Weapon
 var weapon_index := 0
@@ -22,9 +15,6 @@ var movement_velocity: Vector3
 var rotation_target: Vector3
 
 var input_mouse: Vector2
-
-var health:int = 100
-var gravity := 0.0
 
 var previously_floored := false
 
@@ -70,7 +60,7 @@ func _physics_process(delta):
 	movement_velocity = transform.basis * movement_velocity # Move forward
 
 	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
-	applied_velocity.y = -gravity
+	applied_velocity.y = -curr_gravity
 
 	velocity = applied_velocity
 	move_and_slide()
@@ -96,7 +86,7 @@ func _physics_process(delta):
 
 	camera.position.y = lerp(camera.position.y, 0.0, delta * 5)
 
-	if is_on_floor() and gravity > 1 and !previously_floored: # Landed
+	if is_on_floor() and curr_gravity > 1 and !previously_floored: # Landed
 		Audio.play("sounds/land.ogg")
 		camera.position.y = -0.1
 
@@ -157,7 +147,7 @@ func handle_controls(_delta):
 
 		if jump_double:
 
-			gravity = -jump_strength
+			curr_gravity = -jump_strength
 			jump_double = false
 
 		if(jump_single): action_jump()
@@ -170,18 +160,18 @@ func handle_controls(_delta):
 
 func handle_gravity(delta):
 
-	gravity += 20 * delta
+	curr_gravity += base_gravity * delta
 
-	if gravity > 0 and is_on_floor():
+	if curr_gravity > 0 and is_on_floor():
 
 		jump_single = true
-		gravity = 0
+		curr_gravity = 0
 
 # Jumping
 
 func action_jump():
 
-	gravity = -jump_strength
+	curr_gravity = -jump_strength
 
 	jump_single = false;
 	jump_double = true;
@@ -246,9 +236,8 @@ func change_weapon():
 	crosshair.texture = weapon.crosshair
 
 func damage(amount):
+	super(amount)
 
-	health -= amount
-	health_updated.emit(health) # Update health on HUD
-
-	if health < 0:
+	health_updated.emit(curr_health) # Update health on HUD
+	if curr_health < 0:
 		get_tree().reload_current_scene() # Reset when out of health
