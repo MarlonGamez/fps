@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var player: Node3D
+@export var weapon: Weapon
 
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
@@ -57,6 +58,8 @@ func _on_timer_timeout():
 
 	if raycast.is_colliding():
 		var collider = raycast.get_collider()
+
+		weapon.fire(self)
 
 		if collider.has_method("damage"):  # Raycast collides with player
 			# Play muzzle flash animation(s)

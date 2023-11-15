@@ -33,19 +33,20 @@ var bullet_inst
 func fire(wielder):
     if !wielder.weapon_cooldown.is_stopped(): return # Cooldown for shooting
 
-    Audio.play(sound_shoot)
-
-    wielder.container.position.z += 0.25 # Knockback of weapon visual
-    wielder.camera.rotation.x += 0.025 # Knockback of camera
-    wielder.movement_velocity += Vector3(0, 0, knockback) # Knockback
+    if "camera" in wielder:
+        Audio.play(sound_shoot)
+        wielder.container.position.z += 0.25 # Knockback of weapon visual
+        wielder.camera.rotation.x += 0.025 # Knockback of camera
+        wielder.movement_velocity += Vector3(0, 0, knockback) # Knockback
 
     # Set muzzle flash position, play animation
 
-    wielder.muzzle.play("default")
+    if "muzzle" in wielder:
+        wielder.muzzle.play("default")
 
-    wielder.muzzle.rotation_degrees.z = randf_range(-45, 45)
-    wielder.muzzle.scale = Vector3.ONE * randf_range(0.40, 0.75)
-    wielder.muzzle.position = wielder.container.position - muzzle_position
+        wielder.muzzle.rotation_degrees.z = randf_range(-45, 45)
+        wielder.muzzle.scale = Vector3.ONE * randf_range(0.40, 0.75)
+        wielder.muzzle.position = wielder.container.position - muzzle_position
 
     wielder.weapon_cooldown.start(cooldown)
 
