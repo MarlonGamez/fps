@@ -191,7 +191,7 @@ func action_jump():
 func action_shoot():
 
 	if Input.is_action_pressed("shoot"):
-		weapon.fire(self)
+		weapon.fire(self, head.position, camera)
 
 
 # Toggle between available weapons (listed in 'weapons')

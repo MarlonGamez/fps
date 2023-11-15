@@ -30,7 +30,7 @@ class_name ProjectileWeapon
 var bullet = load("res://objects/bullet.tscn")
 var bullet_inst
 
-func fire(wielder):
+func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
     if !wielder.weapon_cooldown.is_stopped(): return # Cooldown for shooting
 
     if "camera" in wielder:
@@ -53,16 +53,16 @@ func fire(wielder):
     # Shoot the weapon, amount based on shot count
 
     for n in shot_count:
-
-        var offset_x = randf_range(-spread, spread)
-        var offset_y = randf_range(-spread, spread)
-        wielder.raycast.target_position = Vector3(0, 0, -1) * max_distance
-        wielder.raycast.target_position.x = offset_x
-        wielder.raycast.target_position.y = offset_y
+        var target_pos: Vector3 = Vector3(randf_range(-spread, spread), randf_range(-spread, spread), -1 * max_distance)
+        # var offset_x = randf_range(-spread, spread)
+        # var offset_y = randf_range(-spread, spread)
+        # wielder.raycast.target_position = Vector3(0, 0, -1) * max_distance
+        # wielder.raycast.target_position.x = offset_x
+        # wielder.raycast.target_position.y = offset_y
 
         bullet_inst = bullet.instantiate()
-        bullet_inst.look_at_from_position(wielder.head.global_position, wielder.to_global(wielder.head.position + wielder.camera.transform.translated_local(wielder.raycast.target_position).origin))
-        bullet_inst.position = wielder.head.global_position
+        bullet_inst.look_at_from_position(wielder.to_global(head_pos), wielder.to_global(head_pos + head_aimer.transform.translated_local(target_pos).origin))
+        bullet_inst.position = wielder.to_global(head_pos)
         bullet_inst.time_spawned = Time.get_unix_time_from_system()
         bullet_inst.lifetime = bullet_lifetime
         bullet_inst.speed = bullet_speed

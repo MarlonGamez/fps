@@ -54,24 +54,25 @@ func destroy():
 
 
 func _on_timer_timeout():
-	raycast.force_raycast_update()
+	pass
+	# raycast.force_raycast_update()
 
-	if raycast.is_colliding():
-		var collider = raycast.get_collider()
+	# if raycast.is_colliding():
+	# 	var collider = raycast.get_collider()
 
-		weapon.fire(self)
+	# 	weapon.fire(self)
 
-		if collider.has_method("damage"):  # Raycast collides with player
-			# Play muzzle flash animation(s)
+	# 	if collider.has_method("damage"):  # Raycast collides with player
+	# 		# Play muzzle flash animation(s)
 
-			muzzle_a.frame = 0
-			muzzle_a.play("default")
-			muzzle_a.rotation_degrees.z = randf_range(-45, 45)
+	# 		muzzle_a.frame = 0
+	# 		muzzle_a.play("default")
+	# 		muzzle_a.rotation_degrees.z = randf_range(-45, 45)
 
-			muzzle_b.frame = 0
-			muzzle_b.play("default")
-			muzzle_b.rotation_degrees.z = randf_range(-45, 45)
+	# 		muzzle_b.frame = 0
+	# 		muzzle_b.play("default")
+	# 		muzzle_b.rotation_degrees.z = randf_range(-45, 45)
 
-			Audio.play("sounds/enemy_attack.ogg")
+	# 		Audio.play("sounds/enemy_attack.ogg")
 
-			collider.damage(5)  # Apply damage to player
+	# 		collider.damage(5)  # Apply damage to player

@@ -25,7 +25,7 @@ class_name MeleeWeapon
 var hitbox_res = load("res://objects/hitbox.tscn")
 var hitbox_inst
 
-func fire(wielder):
+func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	if !wielder.weapon_cooldown.is_stopped(): return
 
 	wielder.weapon_cooldown.start(cooldown)
@@ -35,7 +35,7 @@ func fire(wielder):
 	hitbox_inst.lifetime = 10
 	hitbox_inst.spawner_group = "player"
 	hitbox_inst.position = hitboxes[0].position
-	wielder.camera.add_child(hitbox_inst)
+	head_aimer.add_child(hitbox_inst)
 
 	for i in range(hitboxes.size()-1):
 		print("hitbox %s to %s" % [i, i+1])
