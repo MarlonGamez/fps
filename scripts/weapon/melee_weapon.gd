@@ -23,13 +23,12 @@ class_name MeleeWeapon
 @export var crosshair: Texture2D  # Image of crosshair on-screen
 
 var hitbox_res = load("res://objects/hitbox.tscn")
-var hitbox_inst
 
 func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	if !wielder.weapon_cooldown.is_stopped(): return
-
 	wielder.weapon_cooldown.start(cooldown)
-	hitbox_inst = hitbox_res.instantiate()
+
+	var hitbox_inst = hitbox_res.instantiate()
 	hitbox_inst.damage = damage
 	hitbox_inst.lifetime = 10
 	hitbox_inst.spawner_groups = wielder.get_groups()
@@ -39,11 +38,8 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	for i in range(hitboxes.size()-1):
 		var from = hitboxes[i]
 		var to = hitboxes[i+1]
-		# var distance = from.position.distance_to(to.position)
-		# var speed = distance * to.duration
 		var direction = ((to.position - from.position) / to.duration)
 		hitbox_inst.velocity = direction
 		await wielder.get_tree().create_timer(to.duration).timeout
 
 	hitbox_inst.queue_free()
-

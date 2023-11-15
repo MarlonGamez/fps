@@ -157,9 +157,7 @@ func handle_controls(_delta):
 	action_weapon_toggle()
 
 # Handle gravity
-
 func handle_gravity(delta):
-
 	curr_gravity += base_gravity * delta
 
 	if curr_gravity > 0 and is_on_floor():
@@ -167,16 +165,13 @@ func handle_gravity(delta):
 		curr_gravity = 0
 
 # Jumping
-
 func action_jump():
-
 	curr_gravity = -jump_strength
 
 	jump_single = false;
 	jump_double = true;
 
 # Shooting
-
 func action_shoot():
 
 	if Input.is_action_pressed("shoot"):

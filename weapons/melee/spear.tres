@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MeleeWeapon" load_steps=7 format=3 uid="uid://bvt38xld72jd7"]
+
+[ext_resource type="Script" path="res://scripts/weapon/melee_weapon.gd" id="1_35kf8"]
+[ext_resource type="Script" path="res://scripts/melee_hitbox.gd" id="1_rr3af"]
+[ext_resource type="PackedScene" uid="uid://bfmnga7tgkbr0" path="res://models/graveyard/altar-wood.glb" id="2_7l5l2"]
+
+[sub_resource type="Resource" id="Resource_trj52"]
+script = ExtResource("1_rr3af")
+delay = 0.0
+duration = 1.0
+position = Vector3(1, 0, 0)
+
+[sub_resource type="Resource" id="Resource_kklnc"]
+script = ExtResource("1_rr3af")
+delay = 0.0
+duration = 0.2
+position = Vector3(0.9, 0, -1)
+
+[sub_resource type="Resource" id="Resource_coq8v"]
+script = ExtResource("1_rr3af")
+delay = 0.0
+duration = 0.1
+position = Vector3(0, 0, -3)
+
+[resource]
+script = ExtResource("1_35kf8")
+model = ExtResource("2_7l5l2")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+cooldown = 0.8
+damage = 50.0
+knockback = 20
+hitboxes = Array[ExtResource("1_rr3af")]([SubResource("Resource_trj52"), SubResource("Resource_kklnc"), SubResource("Resource_coq8v")])
+bullet_speed = 1.0
+bullet_grav = 0.0
+bullet_lifetime = 1.0
+sound_shoot = ""

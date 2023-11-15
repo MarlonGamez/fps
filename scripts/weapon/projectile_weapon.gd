@@ -7,8 +7,6 @@ class_name ProjectileWeapon
 @export var rotation: Vector3  # On-screen rotation
 @export var muzzle_position: Vector3  # On-screen position of muzzle flash
 
-@export var bullet_model: PackedScene # Model of the bullet
-
 @export_subgroup("Properties")
 @export_range(0, 1) var cooldown: float = 0.1  # Firerate
 @export_range(1, 20) var max_distance: int = 10  # Fire distance
@@ -40,7 +38,6 @@ func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
 		wielder.movement_velocity += Vector3(0, 0, knockback) # Knockback
 
 	# Set muzzle flash position, play animation
-
 	if "muzzle" in wielder:
 		wielder.muzzle.play("default")
 
@@ -51,7 +48,6 @@ func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
 	wielder.weapon_cooldown.start(cooldown)
 
 	# Shoot the weapon, amount based on shot count
-
 	for n in shot_count:
 		var target_pos: Vector3 = Vector3(randf_range(-spread, spread), randf_range(-spread, spread), max_distance)
 		bullet_inst = bullet.instantiate()
