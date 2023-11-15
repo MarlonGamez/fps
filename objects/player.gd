@@ -163,7 +163,6 @@ func handle_gravity(delta):
 	curr_gravity += base_gravity * delta
 
 	if curr_gravity > 0 and is_on_floor():
-
 		jump_single = true
 		curr_gravity = 0
 

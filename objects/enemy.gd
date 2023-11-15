@@ -1,14 +1,13 @@
-extends Node3D
+extends Entity
 
 @export var player: Node3D
-@export var weapon: Weapon
 
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
 @onready var muzzle_b = $MuzzleB
 @onready var weapon_cooldown = $Timer
+@onready var weapon: Weapon = weapons[0]
 
-var health := 100
 var time := 0.0
 var target_position: Vector3
 var destroyed := false
@@ -33,11 +32,10 @@ func _process(delta):
 
 # Take damage
 func damage(amount):
+	super(amount)
 	Audio.play("sounds/enemy_hurt.ogg")
 
-	health -= amount
-
-	if health <= 0 and !destroyed:
+	if curr_health <= 0 and !destroyed:
 		destroy()
 
 

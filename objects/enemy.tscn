@@ -10,7 +10,7 @@ radius = 0.75
 
 [node name="enemy-flying" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_jg24b")
-weapon = ExtResource("2_tccbq")
+weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("2_tccbq")])
 
 [node name="enemy-flying" parent="." instance=ExtResource("1_3v8nl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
