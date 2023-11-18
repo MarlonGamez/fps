@@ -10,8 +10,5 @@ class_name Entity
 @onready var curr_health: int = max_health
 @onready var curr_gravity: float
 
-@export_subgroup("Weapons")
-@export var weapons: Array[Weapon] = []
-
 func damage(amount):
     curr_health -= amount

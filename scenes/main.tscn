@@ -78,7 +78,7 @@ player = NodePath("../../Player")
 
 [node name="Decoration" type="Node" parent="."]
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="." groups=["collision"]]
 mesh_library = ExtResource("10_b8go3")
 cell_size = Vector3(1.5, 1.35, 1.5)
 cell_scale = 1.5
@@ -87,7 +87,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
-[node name="GridMap2" type="GridMap" parent="."]
+[node name="GridMap2" type="GridMap" parent="." groups=["collision"]]
 mesh_library = ExtResource("10_b8go3")
 cell_size = Vector3(1.5, 1.35, 1.5)
 cell_scale = 1.5

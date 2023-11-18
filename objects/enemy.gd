@@ -6,7 +6,7 @@ extends Entity
 @onready var muzzle_a = $MuzzleA
 @onready var muzzle_b = $MuzzleB
 @onready var weapon_cooldown = $Timer
-@onready var weapon: Weapon = weapons[0]
+# @onready var weapon: Weapon = weapons[0]
 
 var time := 0.0
 var target_position: Vector3
@@ -27,7 +27,8 @@ func _process(delta):
 
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
-		weapon.fire(self, raycast.position, raycast)
+		pass
+		# weapon.fire(self, raycast.position, raycast)
 
 
 # Take damage

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="ProjectileWeapon" load_steps=3 format=3 uid="uid://c56y8pqoyk15f"]
+[gd_resource type="Resource" script_class="ProjectileWeapon" load_steps=4 format=3 uid="uid://c56y8pqoyk15f"]
 
+[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="1_t31it"]
 [ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://models/blaster.glb" id="1_x0glg"]
 [ext_resource type="Script" path="res://scripts/weapon/projectile_weapon.gd" id="2_liwil"]
 
@@ -18,4 +19,5 @@ knockback = 20
 bullet_speed = 15.0
 bullet_grav = 0.0
 bullet_lifetime = 2.0
-sound_shoot = ""
+sound_shoot = "sounds/blaster.ogg"
+crosshair = ExtResource("1_t31it")

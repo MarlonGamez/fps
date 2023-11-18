@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2g78tpqbyf5g"]
+[gd_scene load_steps=7 format=3 uid="uid://d2g78tpqbyf5g"]
 
 [ext_resource type="PackedScene" uid="uid://lde2xq3vq635" path="res://models/enemy-flying.glb" id="1_3v8nl"]
 [ext_resource type="Script" path="res://objects/enemy.gd" id="1_jg24b"]
-[ext_resource type="Resource" uid="uid://c56y8pqoyk15f" path="res://weapons/blaster.tres" id="2_tccbq"]
 [ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="3_iblw5"]
+[ext_resource type="PackedScene" uid="uid://s8lxjnui57cx" path="res://components/hurtbox_component.tscn" id="4_5j7on"]
+[ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="4_k84l3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iix87"]
 radius = 0.75
 
 [node name="enemy-flying" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_jg24b")
-weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("2_tccbq")])
 
 [node name="enemy-flying" parent="." instance=ExtResource("1_3v8nl")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -34,3 +34,13 @@ frame = 2
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Health" parent="." instance=ExtResource("4_k84l3")]
+MAX_HEALTH = 100
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_5j7on")]
+health = NodePath("../Health")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("SphereShape3D_iix87")
