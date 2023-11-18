@@ -1,15 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxvvlck8lej3f"]
+[gd_scene load_steps=8 format=3 uid="uid://dxvvlck8lej3f"]
 
 [ext_resource type="Environment" uid="uid://jvmpkdwaeaq" path="res://scenes/main-environment.tres" id="1_q8fpv"]
 [ext_resource type="PackedScene" uid="uid://dl2ed4gkybggf" path="res://objects/player.tscn" id="2_elriq"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="3_s8mkj"]
 [ext_resource type="FontFile" uid="uid://biqtga8moh7ah" path="res://fonts/lilita_one_regular.ttf" id="3_w27de"]
-[ext_resource type="PackedScene" uid="uid://dpm3l05d7fu35" path="res://objects/platform.tscn" id="5_3s40e"]
-[ext_resource type="PackedScene" uid="uid://r7rt7pth4u7o" path="res://objects/wall_low.tscn" id="5_6vel1"]
-[ext_resource type="PackedScene" uid="uid://c71evdjblk5wp" path="res://objects/wall_high.tscn" id="7_cabne"]
-[ext_resource type="PackedScene" uid="uid://bvx5cvigosg0s" path="res://objects/platform_large_grass.tscn" id="7_wggef"]
 [ext_resource type="PackedScene" uid="uid://d2g78tpqbyf5g" path="res://objects/enemy.tscn" id="8_7ty2f"]
-[ext_resource type="MeshLibrary" uid="uid://c8lcx1muox05o" path="res://gridmaps/dungeon.meshlib" id="10_2mr4f"]
+[ext_resource type="MeshLibrary" uid="uid://c5eveicps1qqw" path="res://gridmaps/dungeon.tres" id="10_b8go3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fpmwk"]
 font = ExtResource("3_w27de")
@@ -23,6 +19,7 @@ outline_color = Color(0, 0, 0, 0.470588)
 environment = ExtResource("1_q8fpv")
 
 [node name="Player" parent="." node_paths=PackedStringArray("crosshair") instance=ExtResource("2_elriq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 crosshair = NodePath("../HUD/Crosshair")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
@@ -62,7 +59,7 @@ vertical_alignment = 2
 [node name="Enemies" type="Node" parent="."]
 
 [node name="enemy-flying" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.059996, 8.21126, -2.83341)
 player = NodePath("../../Player")
 
 [node name="enemy-flying2" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
@@ -74,59 +71,29 @@ transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107
 player = NodePath("../../Player")
 
 [node name="enemy-flying4" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 15.5, 4, -7.5)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 8.30038, 4.0449, -0.644187)
 player = NodePath("../../Player")
 
 [node name="Level" type="Node" parent="."]
 
-[node name="wall-low" parent="Level" instance=ExtResource("5_6vel1")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -1.92088, 1.05, -6.90166)
-
-[node name="wall-low3" parent="Level" instance=ExtResource("5_6vel1")]
-transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 6.07912, 1.05, 6.59834)
-
-[node name="platform" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 6.5)
-
-[node name="platform2" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.5, -2.5)
-
-[node name="platform3" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 3, -3.5)
-
-[node name="platform4" parent="Level" instance=ExtResource("5_3s40e")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7, 1, -2)
-
-[node name="wall-high" parent="Level" instance=ExtResource("7_cabne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.5, 4)
-
-[node name="wall-high2" parent="Level" instance=ExtResource("7_cabne")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.5, 3, -5.5)
-
-[node name="platform-large-grass" parent="Level" instance=ExtResource("7_wggef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="platform-large-grass2" parent="Level" instance=ExtResource("7_wggef")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -2, 0.5, -6)
-
-[node name="platform-large-grass3" parent="Level" instance=ExtResource("7_wggef")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -6, 1, 2.5)
-
-[node name="platform-large-grass5" parent="Level" instance=ExtResource("7_wggef")]
-transform = Transform3D(0.866026, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866026, 12, 2.5, -5)
-
-[node name="platform-large-grass4" parent="Level" instance=ExtResource("7_wggef")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 5, 0.5, 5.5)
-
 [node name="Decoration" type="Node" parent="."]
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("10_2mr4f")
+mesh_library = ExtResource("10_b8go3")
 cell_size = Vector3(1.5, 1.35, 1.5)
 cell_scale = 1.5
 data = {
-"cells": PackedInt32Array(5, 0, 1048581, 131076, 65535, 1048585, 65541, 1, 1048583, 4, 65534, 1048583, 65541, 0, 9, 131077, 65535, 7, 65540, 0, 1441804, 65540, 1, 7, 65542, 0, 1441804, 65542, 1, 7, 65540, 2, 7, 65541, 2, 7, 65542, 2, 7, 196611, 65535, 7, 196611, 0, 7, 196611, 65534, 7, 196610, 65534, 7, 196610, 65535, 7, 196610, 0, 7, 196609, 0, 7, 196609, 65535, 7, 196609, 65534, 7, 65541, 3, 7, 65543, 0, 1441805, 65543, 1, 1441805, 65539, 1, 1048589, 65539, 2, 1048589, 65540, 3, 1048588, 65542, 3, 1048588, 65543, 2, 1441805, 131077, 65534, 13, 131078, 65535, 1441805, 131076, 65534, 13, 131076, 0, 12)
+"cells": PackedInt32Array(5, 0, 1048581, 131076, 65535, 1048585, 65541, 1, 6, 4, 65534, 1048583, 65541, 0, 9, 131077, 65535, 7, 65540, 0, 13, 65540, 1, 7, 65542, 0, 1441804, 65542, 1, 7, 65540, 2, 7, 65541, 2, 7, 65542, 2, 7, 196611, 65535, 1048585, 196611, 0, 655373, 196611, 65534, 13, 65543, 0, 1441805, 65543, 1, 1441805, 65539, 1, 1048581, 65539, 2, 1048589, 65540, 3, 6, 65542, 3, 1048588, 65543, 2, 1441805, 131077, 65534, 5, 131078, 65535, 1441805, 131076, 65534, 5, 131076, 0, 10, 196612, 65534, 5, 196613, 65534, 13, 196614, 65535, 5, 262146, 65535, 1441799, 196610, 65534, 1441797, 196610, 0, 1441797, 262145, 65535, 1441799, 262145, 65534, 1441799, 262145, 0, 1441799, 262144, 65535, 1441799, 262144, 65534, 1441797, 196608, 0, 1441797, 262143, 65535, 1441797, 196609, 65533, 1441797, 196609, 1, 1441797, 262144, 65533, 1441797, 327679, 65534, 1441797, 327679, 65533, 1441797, 131074, 1, 655365, 131074, 2, 655365, 131073, 2, 655365, 131075, 1, 1048589, 131075, 0, 5, 262148, 65534, 10, 65538, 3, 5, 3, 3, 5, 4, 4, 5, 5, 4, 5, 6, 4, 5, 7, 3, 5, 7, 4, 5, 65542, 4, 10, 5, 3, 5, -1, 65535, 5, -65536, 65535, 5, -1, 0, 5, -65536, 0, 5, -65535, 65535, 5, -65535, 65534, 5, -65536, 65534, 5, -65536, 65533, 5, -1, 65533, 5, -1, 65534, 5, 1, 65533, 5, 0, 65532, 5, 65535, 65532, 5, 2, 65534, 5, 2, 65535, 5, 1, 65535, 5, 65537, 65535, 5, 131072, 65535, 5, 131073, 0, 5, 196606, 0, 5, 131073, 65534, 5, 196608, 65534, 5, 262142, 4, 5, -65536, 1, 5, -1, 1, 5, -1, 2, 5, -65536, 2, 5, -65535, 2, 5, -65534, 2, 5, -65533, 2, 5, -1, 3, 5, -65536, 3, 5, -65535, 3, 5, -1, 4, 5, -65536, 4, 5, -65535, 4, 5, 2, 4, 5, 3, 4, 5, -65534, 3, 5, -65535, 5, 5, -65536, 5, 5, -1, 5, 5, -2, 1, 5, -2, 2, 5, -2, 3, 5, -2, 4, 5, 2, 5, 5, 3, 5, 5, 1, 4, 1441801, 1, 5, 1441801, 1, 1, 1441797, 65537, 0, 1441797, 65538, 1, 1441797, 2, 2, 1441797, 1, 3, 1441797, 131072, 0, 5, 131072, 1, 5, 196607, 0, 5, 131071, 65532, 5, 65537, 65534, 5, 65537, 65533, 5, 65536, 65532, 5, 131072, 65533, 5, 196607, 65533, 5, 196607, 65534, 5, 196606, 65533, 5, -2, 0, 5, -2, 65535, 5, -2, 65534, 5, -2, 65533, 5, -3, 65533, 5, -3, 65534, 5, -3, 65535, 5, -3, 0, 5, -3, 1, 5, -3, 2, 5, -3, 3, 5, -3, 4, 5, -3, 5, 5, -3, 6, 5, -2, 6, 5, -1, 6, 5, -2, 5, 5, -4, 5, 5, -4, 4, 5, -4, 3, 5, -4, 2, 5, -4, 1, 5, -4, 0, 5, -4, 65535, 5, -4, 65534, 5, -4, 65533, 5, -5, 65533, 5, -5, 65534, 5, -5, 65535, 5, -5, 0, 5, -5, 1, 5, -5, 5, 5, -5, 6, 5, -5, 4, 5, -5, 3, 5, -5, 2, 5, -4, 6, 5, -65535, 6, 5, -65534, 6, 5, -65536, 6, 5, -65534, 7, 5, -65535, 7, 5, -65536, 7, 5, -1, 7, 5, -2, 7, 5, -3, 7, 5, -4, 7, 5, -5, 7, 5, -6, 65533, 5, -6, 65534, 5, -6, 65535, 5, -6, 4, 5, -6, 5, 5, -6, 6, 5, -6, 7, 5, -6, 3, 5, -6, 2, 5, -6, 1, 5, -6, 0, 5, -7, 0, 5, -7, 65533, 5, -7, 65534, 5, -7, 65535, 5, -7, 1, 5, -7, 2, 5, -7, 3, 5, -7, 4, 5, -7, 5, 5, -7, 6, 5, -7, 7, 5)
 }
-metadata/_editor_floor_ = Vector3(0, 2, 0)
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="GridMap2" type="GridMap" parent="."]
+mesh_library = ExtResource("10_b8go3")
+cell_size = Vector3(1.5, 1.35, 1.5)
+cell_scale = 1.5
+data = {
+"cells": PackedInt32Array(262145, 65534, 655364, 262145, 0, 655364, 65540, 1, 8)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [connection signal="health_updated" from="Player" to="HUD" method="_on_health_updated"]
