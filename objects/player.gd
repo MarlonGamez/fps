@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 var mouse_sensitivity = 700
 var gamepad_sensitivity := 0.075
@@ -16,8 +17,6 @@ var previously_floored := false
 var container_offset = Vector3(1.2, -1.1, -2.75)
 
 var tween: Tween
-
-signal health_updated
 
 @onready var head = $Head
 @onready var camera = $Head/Camera

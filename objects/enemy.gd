@@ -1,4 +1,4 @@
-extends Entity
+extends CharacterBody3D
 
 @export var player: Node3D
 
@@ -6,11 +6,12 @@ extends Entity
 @onready var muzzle_a = $MuzzleA
 @onready var muzzle_b = $MuzzleB
 @onready var weapon_cooldown = $Timer
-# @onready var weapon: Weapon = weapons[0]
+
+# Components
+@onready var weapons: WeaponComponent = $Weapon
 
 var time := 0.0
 var target_position: Vector3
-var destroyed := false
 
 # When ready, save the initial position
 func _ready():
@@ -28,21 +29,15 @@ func _process(delta):
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
 		pass
-		# weapon.fire(self, raycast.position, raycast)
+		weapons.curr_weapon.fire(self, raycast.position, raycast)
 
 
 # Take damage
-func damage(amount):
-	super(amount)
+func _on_health_damaged(_amount):
 	Audio.play("sounds/enemy_hurt.ogg")
-
-	if curr_health <= 0 and !destroyed:
-		destroy()
 
 
 # Destroy the enemy when out of health
-func destroy():
+func _on_health_depleted():
 	Audio.play("sounds/enemy_destroy.ogg")
-
-	destroyed = true
 	queue_free()

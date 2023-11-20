@@ -4,6 +4,7 @@ class_name HealthComponent
 @export var MAX_HEALTH: int
 var health: int
 
+signal updated(total: int)
 signal healed(amount: int)
 signal damaged(amount: int)
 signal depleted
@@ -14,10 +15,12 @@ func _ready():
 func heal(amount: int):
 	health += amount
 	healed.emit(amount)
+	updated.emit(health)
 
 func damage(amount: int):
 	health -= amount
 	damaged.emit(amount)
+	updated.emit(health)
 
 	if health <= 0:
 		depleted.emit()
