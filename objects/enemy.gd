@@ -28,7 +28,7 @@ func _process(delta):
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
 		pass
-		weapons.fire_weapon(self, raycast.position, raycast)
+		weapons.fire_weapon()
 
 
 # Take damage

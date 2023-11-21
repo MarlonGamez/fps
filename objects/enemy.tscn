@@ -40,7 +40,10 @@ one_shot = true
 [node name="Health" parent="." instance=ExtResource("4_k84l3")]
 MAX_HEALTH = 100
 
-[node name="Weapon" parent="." instance=ExtResource("5_jxbra")]
+[node name="Weapon" parent="." node_paths=PackedStringArray("wielder", "wielder_head", "head_aimer") instance=ExtResource("5_jxbra")]
+wielder = NodePath("..")
+wielder_head = NodePath("../RayCast")
+head_aimer = NodePath("../RayCast")
 weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("6_2prts")])
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_5j7on")]

@@ -140,7 +140,9 @@ func action_reload():
 # Shooting
 func action_shoot():
 	if Input.is_action_pressed("shoot"):
-		weapons.fire_weapon(self, head.position, camera)
+		weapons.fire_weapon()
+	elif Input.is_action_just_released("shoot"):
+		weapons.stop_charging_weapon()
 
 # Toggle between available weapons
 func action_weapon_toggle():

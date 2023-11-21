@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=16 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_ffboj"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="2_b0fo8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="8_1ynqb"]
 [ext_resource type="Resource" uid="uid://uhve3madfm8n" path="res://weapons/smg.tres" id="8_02iv7"]
 [ext_resource type="PackedScene" uid="uid://gsxginp1rirh" path="res://components/gravity_component.tscn" id="9_kdit3"]
+[ext_resource type="Resource" uid="uid://0ww058eh32ey" path="res://weapons/charge-blaster.tres" id="9_p41id"]
 [ext_resource type="PackedScene" uid="uid://wtvmplhayrom" path="res://components/movement_component.tscn" id="11_papk8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kcmai"]
@@ -39,8 +40,11 @@ health = NodePath("../Health")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape3D_kcmai")
 
-[node name="Weapon" parent="." instance=ExtResource("5_pg7n0")]
-weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("3_kr4p8"), ExtResource("7_it7kf"), ExtResource("8_02iv7")])
+[node name="Weapon" parent="." node_paths=PackedStringArray("wielder", "wielder_head", "head_aimer") instance=ExtResource("5_pg7n0")]
+wielder = NodePath("..")
+wielder_head = NodePath("../Head")
+head_aimer = NodePath("../Head/Camera")
+weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("3_kr4p8"), ExtResource("7_it7kf"), ExtResource("8_02iv7"), ExtResource("9_p41id")])
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
