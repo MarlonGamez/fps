@@ -36,14 +36,11 @@ func change_weapon(weapon_i: int):
 
 func fire_weapon(wielder, wielder_head: Vector3, head_aimer: Node3D):
 	if !reload_timer.is_stopped():
-		print("reloading")
 		return # reloading -> don't fire
 	if needs_reload(curr_i): # needs reload -> reload
-		print("needs reload")
 		reload_weapon()
 		return
 	if !cooldown_timer.is_stopped():
-		print("weapon cooldown")
 		return # Cooldown for shooting
 
 	curr_weapon.fire(wielder, wielder_head, head_aimer)
