@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectileWeapon" load_steps=4 format=3 uid="uid://58j3ri0m5w70"]
+[gd_resource type="Resource" script_class="ProjectileWeapon" load_steps=4 format=3 uid="uid://uhve3madfm8n"]
 
 [ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="1_pjfui"]
 [ext_resource type="PackedScene" uid="uid://dd3oln1ucgqpd" path="res://models/blaster-repeater.glb" id="2_ijrc8"]

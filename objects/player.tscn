@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_pg7n0"]
 [ext_resource type="Resource" uid="uid://b7c1s0q7pmdcm" path="res://weapons/ar.tres" id="7_it7kf"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="8_1ynqb"]
-[ext_resource type="Resource" uid="uid://58j3ri0m5w70" path="res://weapons/smg.tres" id="8_02iv7"]
+[ext_resource type="Resource" uid="uid://uhve3madfm8n" path="res://weapons/smg.tres" id="8_02iv7"]
 [ext_resource type="PackedScene" uid="uid://gsxginp1rirh" path="res://components/gravity_component.tscn" id="9_kdit3"]
 [ext_resource type="PackedScene" uid="uid://wtvmplhayrom" path="res://components/movement_component.tscn" id="11_papk8"]
 

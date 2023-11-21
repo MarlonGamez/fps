@@ -58,7 +58,7 @@ func reload_weapon():
 
 func _reload_weapon():
 	print("reload callback")
-	curr_weapon.reload()
+	ammo_counts[curr_i] = curr_weapon.max_shots()
 	reloaded.emit(curr_weapon.max_shots())
 
 func can_reload(i: int) -> bool:
