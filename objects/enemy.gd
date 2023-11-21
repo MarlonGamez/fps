@@ -5,7 +5,6 @@ extends CharacterBody3D
 @onready var raycast = $RayCast
 @onready var muzzle_a = $MuzzleA
 @onready var muzzle_b = $MuzzleB
-@onready var weapon_cooldown = $Timer
 
 # Components
 @onready var weapons: WeaponComponent = $Weapon
@@ -29,7 +28,7 @@ func _process(delta):
 	raycast.force_raycast_update()
 	if raycast.is_colliding():
 		pass
-		weapons.curr_weapon.fire(self, raycast.position, raycast)
+		weapons.fire_weapon(self, raycast.position, raycast)
 
 
 # Take damage

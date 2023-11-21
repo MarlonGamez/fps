@@ -7,9 +7,6 @@ class_name MeleeWeapon
 @export var rotation: Vector3  # On-screen rotation
 
 @export_subgroup("Properties")
-@export_range(0, 1) var cooldown: float = 0.1  # Firerate
-@export_range(0, 100) var damage: float = 25  # Damage per hit
-@export_range(0, 50) var knockback: int = 20  # Amount of knockback
 @export var hitboxes: Array[MeleeHitbox]
 
 @export_range(1, 50) var bullet_speed: float = 1.0 # Speed of fired bullet
@@ -25,9 +22,6 @@ class_name MeleeWeapon
 var hitbox_res = load("res://objects/hitbox.tscn")
 
 func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
-	if !wielder.weapon_cooldown.is_stopped(): return
-	wielder.weapon_cooldown.start(cooldown)
-
 	var hitbox_inst = hitbox_res.instantiate()
 	hitbox_inst.damage = damage
 	hitbox_inst.lifetime = 10

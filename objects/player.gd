@@ -24,7 +24,6 @@ var tween: Tween
 @onready var muzzle = $Head/Camera/SubViewportContainer/SubViewport/CameraItem/Muzzle
 @onready var container = $Head/Camera/SubViewportContainer/SubViewport/CameraItem/Container
 @onready var sound_footsteps = $SoundFootsteps
-@onready var weapon_cooldown = $Cooldown
 
 @onready var health: HealthComponent = $Health
 @onready var weapons: WeaponComponent = $Weapon
@@ -135,7 +134,7 @@ func handle_gravity(delta):
 # Shooting
 func action_shoot():
 	if Input.is_action_pressed("shoot"):
-		weapons.curr_weapon.fire(self, head.position, camera)
+		weapons.fire_weapon(self, head.position, camera)
 
 # Toggle between available weapons
 func action_weapon_toggle():

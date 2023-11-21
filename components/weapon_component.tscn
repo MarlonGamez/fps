@@ -4,3 +4,9 @@
 
 [node name="Weapon" type="Node3D"]
 script = ExtResource("1_obj44")
+
+[node name="Reload" type="Timer" parent="."]
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=14 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_ffboj"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="2_b0fo8"]
@@ -7,6 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="4_m6ukc"]
 [ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://sounds/walking.ogg" id="5_ics1s"]
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_pg7n0"]
+[ext_resource type="Resource" uid="uid://b7c1s0q7pmdcm" path="res://weapons/ar.tres" id="7_it7kf"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="8_1ynqb"]
 [ext_resource type="PackedScene" uid="uid://gsxginp1rirh" path="res://components/gravity_component.tscn" id="9_kdit3"]
 [ext_resource type="PackedScene" uid="uid://wtvmplhayrom" path="res://components/movement_component.tscn" id="11_papk8"]
@@ -38,7 +39,7 @@ health = NodePath("../Health")
 shape = SubResource("CapsuleShape3D_kcmai")
 
 [node name="Weapon" parent="." instance=ExtResource("5_pg7n0")]
-weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("3_kr4p8")])
+weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("3_kr4p8"), ExtResource("7_it7kf")])
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
@@ -96,9 +97,6 @@ normal_fade = 0.5
 stream = ExtResource("5_ics1s")
 volume_db = -5.0
 autoplay = true
-
-[node name="Cooldown" type="Timer" parent="."]
-one_shot = true
 
 [node name="Gravity" parent="." instance=ExtResource("9_kdit3")]
 GRAVITY = 20.0

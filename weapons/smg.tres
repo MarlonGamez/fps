@@ -4,3 +4,6 @@
 
 [resource]
 script = ExtResource("2_ukn8t")
+cooldown = 0.1
+damage = 25.0
+knockback = 20

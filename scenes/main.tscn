@@ -57,6 +57,17 @@ text = "100%"
 label_settings = SubResource("LabelSettings_fpmwk")
 vertical_alignment = 2
 
+[node name="Ammo" type="Label" parent="HUD"]
+offset_left = 48.0
+offset_top = 580.0
+offset_right = 138.0
+offset_bottom = 625.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "xyz/xyz"
+label_settings = SubResource("LabelSettings_fpmwk")
+vertical_alignment = 2
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="enemy-flying" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_7ty2f")]
