@@ -25,18 +25,11 @@ class_name ProjectileWeapon
 @export var crosshair: Texture2D  # Image of crosshair on-screen
 
 var reloading: bool = false
-var bullets_remaining: int
 var bullet = load("res://objects/bullet.tscn")
 var bullet_inst
 
-func needs_reload() -> bool:
-	return bullets_remaining <= 0
-
 func max_shots() -> int:
 	return magazine_size
-
-func shots_remaining() -> int:
-	return bullets_remaining
 
 func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
 	if "camera" in wielder:
@@ -54,7 +47,6 @@ func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
 		wielder.muzzle.position = wielder.container.position - muzzle_position
 
 	# Shoot the weapon, amount based on shot count
-	bullets_remaining -= 1
 	for n in shot_count:
 		var target_pos: Vector3 = Vector3(randf_range(-spread, spread), randf_range(-spread, spread), max_distance)
 		bullet_inst = bullet.instantiate()
@@ -67,6 +59,3 @@ func fire(wielder, head_pos: Vector3, head_aimer: Node3D):
 		bullet_inst.damage = damage
 		bullet_inst.spawner_groups = wielder.get_groups()
 		wielder.get_parent().add_child(bullet_inst)
-
-func reload():
-	bullets_remaining = magazine_size

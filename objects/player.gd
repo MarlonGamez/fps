@@ -112,6 +112,7 @@ func handle_controls(_delta):
 	rotation_target.x = clamp(rotation_target.x, deg_to_rad(-90), deg_to_rad(90))
 
 	# Shooting
+	action_reload()
 	action_shoot()
 
 	# Jumping
@@ -130,6 +131,11 @@ func handle_gravity(delta):
 
 	if vert_velocity > 0 and is_on_floor():
 		vert_velocity = 0
+
+# Reload
+func action_reload():
+	if Input.is_action_pressed("reload"):
+		weapons.reload_weapon()
 
 # Shooting
 func action_shoot():

@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scripts/weapon/projectile_weapon.gd" id="2_liwil"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("2_liwil")
 model = ExtResource("1_x0glg")
 position = Vector3(0, 0, 0)
