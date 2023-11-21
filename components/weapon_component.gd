@@ -57,6 +57,7 @@ func stop_charging_weapon():
 	if charge_timer.is_stopped():
 		return
 	charge_timer.stop()
+	charging.emit(0)
 
 func fire_weapon():
 	if !reload_timer.is_stopped():
