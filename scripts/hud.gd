@@ -8,6 +8,8 @@ extends CanvasLayer
 
 func _ready():
 	health.text = "%s/%s" % [player.health.health, player.health.MAX_HEALTH]
+	ammo.text = "%s/%s" % [player.weapons.curr().get_magazine_remaining(), player.weapons.curr().get_magazine_size()]
+
 	player.health.updated.connect(_on_health_updated)
 	player.weapons.reloaded.connect(_on_bullets_updated)
 	player.weapons.weapon_changed.connect(_on_bullets_updated)

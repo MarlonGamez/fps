@@ -35,6 +35,7 @@ var tween: Tween
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health.depleted.connect(death)
+	change_weapon(0)
 	crosshair.texture = weapons.curr().res.crosshair
 
 func _physics_process(delta):
@@ -135,12 +136,14 @@ func handle_gravity(delta):
 # Reload
 func action_reload():
 	if Input.is_action_pressed("reload"):
-		weapons.reload_weapon()
+		if weapons.reload_weapon():
+			tween_weapon(weapons.curr_res().reload_time)
 
 # Shooting
 func action_shoot():
 	if Input.is_action_pressed("shoot"):
-		weapons.activate()
+		if weapons.activate():
+			tween_weapon(weapons.curr_res().reload_time)
 	elif Input.is_action_just_released("shoot"):
 		weapons.deactivate()
 
@@ -149,17 +152,21 @@ func action_weapon_toggle():
 	if Input.is_action_just_pressed("weapon_toggle"):
 		initiate_change_weapon()
 
+func tween_weapon(duration: float, callback: Callable = Callable()):
+	tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.tween_property(container, "position", container_offset - Vector3(0, 1, 0), duration)
+	if !callback.is_null():
+		tween.tween_callback(callback)
+
 # Initiates the weapon changing animation (tween)
 func initiate_change_weapon():
 	Audio.play("sounds/weapon_change.ogg")
-	tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_OUT_IN)
-	tween.tween_property(container, "position", container_offset - Vector3(0, 1, 0), 0.1)
-	tween.tween_callback(change_weapon) # Changes the model
+	tween_weapon(0.1, change_weapon.bind(weapons.curr_i + 1))
 
 # Switches the weapon model (off-screen)
-func change_weapon():
-	weapons.change_weapon(wrap(weapons.curr_i + 1, 0, weapons.size()))
+func change_weapon(i: int):
+	weapons.change_weapon(wrap(i, 0, weapons.size()))
 
 	# Step 1. Remove previous weapon model(s) from container
 	for n in container.get_children():

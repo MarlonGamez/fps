@@ -66,18 +66,18 @@ func change_weapon(weapon_i: int):
 	weapon_changed.emit(shots_remaining(curr_i))
 
 
-func activate():
-	if !reload_timer.is_stopped(): return # reloading -> don't fire
+func activate() -> bool:
+	if !reload_timer.is_stopped(): return false # reloading -> don't fire
 	if needs_reload(curr_i): # needs reload -> reload
-		reload_weapon()
-		return
-	if !cooldown_timer.is_stopped(): return # Cooldown for shooting
+		return reload_weapon()
+	if !cooldown_timer.is_stopped(): return false # Cooldown for shooting
 
 	if weapons[curr_i].chargeable:
 		start_charging_weapon()
-		return
+		return false
 
 	fire_weapon()
+	return false
 
 func start_charging_weapon():
 	if !charge_timer.is_stopped():
@@ -100,9 +100,12 @@ func stop_charging_weapon():
 	charge_timer.stop()
 	charging.emit(0)
 
-func reload_weapon():
-	if !reload_timer.is_stopped(): return # already reloading -> don't reload
+func reload_weapon() -> bool:
+	if !reload_timer.is_stopped(): return false # already reloading -> don't reload
+	if !can_reload(curr_i): return false # cannot reload -> don't reload
+
 	reload_timer.start(curr_res().reload_time)
+	return true
 
 func _reload_weapon():
 	print("reload callback")
