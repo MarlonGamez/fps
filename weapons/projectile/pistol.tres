@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponProjectileRes" load_steps=4 format=3 uid="uid://cb2v8y0d50kjs"]
+
+[ext_resource type="Script" path="res://scripts/weapon_projectile/weapon_projectile_res.gd" id="1_rbxs6"]
+[ext_resource type="Texture2D" uid="uid://ce3lgq7foiusl" path="res://sprites/crosshair-repeater.png" id="1_u5h8d"]
+[ext_resource type="PackedScene" uid="uid://dd3oln1ucgqpd" path="res://models/blaster-repeater.glb" id="2_sebri"]
+
+[resource]
+script = ExtResource("1_rbxs6")
+model = ExtResource("2_sebri")
+position = Vector3(0, 0, 0)
+rotation = Vector3(2.08165e-12, 180, 2.08165e-12)
+muzzle_position = Vector3(0.1, -0.4, 1.5)
+max_distance = 10
+spread = 0.3
+magazine_size = 10
+bullets_per_shot = 1
+bullet_speed = 15.0
+bullet_grav = 0.0
+bullet_lifetime = 1.0
+sound_shoot = "sounds/land.ogg"
+crosshair = ExtResource("1_u5h8d")
+cooldown = 0.2
+damage = 20.0
+knockback = 20
+reload_time = 1.0
+chargeable = false
+charge_time = 0.0

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="MeleeWeapon" load_steps=9 format=3 uid="uid://ts7r7snyynjj"]
 
-[ext_resource type="Script" path="res://scripts/weapon/melee_weapon.gd" id="1_jrlc2"]
+[ext_resource type="Script" path="res://scripts/weapon_melee/melee_weapon.gd" id="1_jrlc2"]
 [ext_resource type="Script" path="res://scripts/melee_hitbox.gd" id="1_n2mdk"]
 [ext_resource type="PackedScene" uid="uid://beaer7x07yif6" path="res://models/grass.glb" id="2_f3vyp"]
 

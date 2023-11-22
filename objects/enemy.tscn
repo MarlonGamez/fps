@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://s8lxjnui57cx" path="res://components/hurtbox_component.tscn" id="4_5j7on"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="4_k84l3"]
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_jxbra"]
-[ext_resource type="Resource" uid="uid://c56y8pqoyk15f" path="res://weapons/blaster.tres" id="6_2prts"]
+[ext_resource type="Resource" uid="uid://cb2v8y0d50kjs" path="res://weapons/projectile/pistol.tres" id="6_lbku5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iix87"]
 radius = 0.75
@@ -44,7 +44,7 @@ MAX_HEALTH = 100
 wielder = NodePath("..")
 wielder_head = NodePath("../RayCast")
 head_aimer = NodePath("../RayCast")
-weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("6_2prts")])
+weapons = Array[Resource("res://scripts/weapon/weapon_res.gd")]([ExtResource("6_lbku5")])
 
 [node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_5j7on")]
 health = NodePath("../Health")

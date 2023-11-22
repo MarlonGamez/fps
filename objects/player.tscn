@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl2ed4gkybggf"]
+[gd_scene load_steps=13 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_ffboj"]
 [ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="2_b0fo8"]
@@ -6,12 +6,9 @@
 [ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="4_m6ukc"]
 [ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://sounds/walking.ogg" id="5_ics1s"]
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_pg7n0"]
-[ext_resource type="Resource" uid="uid://bvt38xld72jd7" path="res://weapons/melee/spear.tres" id="6_x8fo8"]
-[ext_resource type="Resource" uid="uid://b7c1s0q7pmdcm" path="res://weapons/ar.tres" id="7_it7kf"]
+[ext_resource type="Resource" uid="uid://cb2v8y0d50kjs" path="res://weapons/projectile/pistol.tres" id="6_70ut7"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="8_1ynqb"]
-[ext_resource type="Resource" uid="uid://gfiysqd50jqo" path="res://weapons/projectile/test_blaster.tres" id="8_r43lb"]
 [ext_resource type="PackedScene" uid="uid://gsxginp1rirh" path="res://components/gravity_component.tscn" id="9_kdit3"]
-[ext_resource type="Resource" uid="uid://cwop1d3ug5kc3" path="res://weapons/charge-blaster2.tres" id="9_xcqom"]
 [ext_resource type="PackedScene" uid="uid://wtvmplhayrom" path="res://components/movement_component.tscn" id="11_papk8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kcmai"]
@@ -44,7 +41,7 @@ shape = SubResource("CapsuleShape3D_kcmai")
 wielder = NodePath("..")
 wielder_head = NodePath("../Head")
 head_aimer = NodePath("../Head/Camera")
-weapons = Array[Resource("res://scripts/weapon.gd")]([ExtResource("6_x8fo8"), ExtResource("7_it7kf"), ExtResource("8_r43lb"), ExtResource("9_xcqom")])
+weapons = Array[Resource("res://scripts/weapon/weapon_res.gd")]([ExtResource("6_70ut7")])
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
