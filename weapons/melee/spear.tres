@@ -35,5 +35,6 @@ sound_shoot = ""
 cooldown = 0.8
 damage = 50.0
 knockback = 20
+reload_time = 0.0
 chargeable = false
 charge_time = 0.0

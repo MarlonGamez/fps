@@ -19,7 +19,7 @@ func _on_health_updated(_health_delta: int):
 	health.text = "%s/%s" % [player.health.health, player.health.MAX_HEALTH]
 
 func _on_bullets_updated(bullets):
-	ammo.text = "%s/%s" % [bullets, player.weapons.curr_weapon.max_shots()]
+	ammo.text = "%s/%s" % [bullets, player.weapons.curr().max_shots()]
 
 func _on_charge_updated(percent: float):
 	charge.set_value_no_signal(percent)

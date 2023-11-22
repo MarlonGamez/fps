@@ -35,7 +35,7 @@ var tween: Tween
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	health.depleted.connect(death)
-	crosshair.texture = weapons.curr_weapon.crosshair
+	crosshair.texture = weapons.curr().crosshair
 
 func _physics_process(delta):
 
@@ -140,9 +140,9 @@ func action_reload():
 # Shooting
 func action_shoot():
 	if Input.is_action_pressed("shoot"):
-		weapons.fire_weapon()
+		weapons.activate()
 	elif Input.is_action_just_released("shoot"):
-		weapons.stop_charging_weapon()
+		weapons.deactivate()
 
 # Toggle between available weapons
 func action_weapon_toggle():
@@ -166,18 +166,18 @@ func change_weapon():
 		container.remove_child(n)
 
 	# Step 2. Place new weapon model in container
-	var weapon_model = weapons.curr_weapon.model.instantiate()
+	var weapon_model = weapons.curr().model.instantiate()
 	container.add_child(weapon_model)
 
-	weapon_model.position = weapons.curr_weapon.position
-	weapon_model.rotation_degrees = weapons.curr_weapon.rotation
+	weapon_model.position = weapons.curr().position
+	weapon_model.rotation_degrees = weapons.curr().rotation
 
 	# Step 3. Set model to only render on layer 2 (the weapon camera)
 	for child in weapon_model.find_children("*", "MeshInstance3D"):
 		child.layers = 2
 
 	# Set weapon data
-	crosshair.texture = weapons.curr_weapon.crosshair
+	crosshair.texture = weapons.curr().crosshair
 
 func death():
 	get_tree().reload_current_scene() # Reset when out of health

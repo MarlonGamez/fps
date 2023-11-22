@@ -7,3 +7,6 @@ script = ExtResource("1_l1atd")
 cooldown = 0.1
 damage = 25.0
 knockback = 20
+reload_time = 0.0
+chargeable = false
+charge_time = 0.0
