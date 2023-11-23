@@ -30,6 +30,7 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 	hitbox_inst.spawner_groups = wielder.get_groups()
 	hitbox_inst.position = curr_attack.hitboxes[0].position
 	head_aimer.add_child(hitbox_inst)
+	hitbox_inst.particles.emitting = true
 
 	for i in range(curr_attack.hitboxes.size()-1):
 		var from = curr_attack.hitboxes[i]
@@ -39,6 +40,9 @@ func fire(wielder, _head_pos: Vector3, head_aimer: Node3D):
 		await wielder.get_tree().create_timer(to.duration).timeout
 
 	attack_i = (attack_i + 1) % res.attacks.size()
+	hitbox_inst.particles.emitting = false
+	hitbox_inst.hitbox.queue_free()
+	await wielder.get_tree().create_timer(hitbox_inst.particles.lifetime).timeout
 	hitbox_inst.queue_free()
 
 func get_combo_time() -> float:

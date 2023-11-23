@@ -1,4 +1,4 @@
-extends Area3D
+extends Node3D
 class_name Hitbox
 
 var time_spawned: float
@@ -6,6 +6,9 @@ var lifetime: float
 var damage: float
 var spawner_groups: Array[StringName]
 var velocity: Vector3
+
+@onready var hitbox: HitboxComponent = $HitboxComponent
+@onready var particles: GPUParticles3D = $Particles
 
 func _physics_process(delta):
 	position += transform.basis * velocity * delta
