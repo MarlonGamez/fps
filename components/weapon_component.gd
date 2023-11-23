@@ -5,7 +5,6 @@ class_name WeaponComponent
 @export var wielder_head: Node3D
 @export var head_aimer: Node3D
 
-
 @export var weapons: Array[WeaponRes] = []
 var ws: Array[Weapon] = []
 var curr_i: int
@@ -14,10 +13,13 @@ signal weapon_changed(magazine_size: int)
 signal fired(remaining_bullets: int)
 signal reloaded(magazine_size: int)
 signal charging(percent: float)
+signal combo_time_left(time_left: float, combo_time: float)
 
-@onready var cooldown_timer = $Cooldown
-@onready var reload_timer = $Reload
-@onready var charge_timer = $Charge
+@onready var cooldown_timer: Timer = $Cooldown
+@onready var reload_timer: Timer = $Reload
+@onready var charge_timer: Timer = $Charge
+@onready var combo_timer: Timer = $Combo
+var combo_time: float = 0
 
 func _ready():
 	for w in weapons:
@@ -31,10 +33,14 @@ func _ready():
 	change_weapon(0)
 	reload_timer.timeout.connect(_reload_weapon)
 	charge_timer.timeout.connect(fire_weapon)
+	combo_timer.timeout.connect(reset_combo)
 
 func _physics_process(_delta: float):
 	if !charge_timer.is_stopped():
 		charging.emit((curr_res().charge_time - charge_timer.time_left) / curr_res().charge_time)
+
+	if !combo_timer.is_stopped():
+		combo_time_left.emit(combo_timer.time_left, combo_time)
 
 
 func size() -> int:
@@ -72,6 +78,9 @@ func activate() -> bool:
 		return reload_weapon()
 	if !cooldown_timer.is_stopped(): return false # Cooldown for shooting
 
+	if !combo_timer.is_stopped():
+		combo_timer.stop()
+
 	if weapons[curr_i].chargeable:
 		start_charging_weapon()
 		return false
@@ -85,10 +94,13 @@ func start_charging_weapon():
 	charge_timer.start(curr_res().charge_time)
 
 func fire_weapon():
+	combo_time = curr().get_combo_time()
+	var cooldown_time: float = curr().get_cooldown()
 	curr().fire(wielder, wielder_head.position, head_aimer)
 	fired.emit(shots_remaining(curr_i))
 	charging.emit(0)
-	cooldown_timer.start(curr_res().cooldown)
+	cooldown_timer.start(cooldown_time)
+	combo_timer.start(combo_time)
 
 
 func deactivate():
@@ -108,8 +120,11 @@ func reload_weapon() -> bool:
 	return true
 
 func _reload_weapon():
-	print("reload callback")
 	curr().reload()
 	reloaded.emit(curr().get_magazine_remaining())
+
+func reset_combo():
+	curr().reset_combo()
+	combo_time_left.emit(0, curr().get_combo_time())
 
 

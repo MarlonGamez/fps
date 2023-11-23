@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponMeleeRes" load_steps=7 format=3 uid="uid://bopk3lfbognrn"]
+
+[ext_resource type="Resource" uid="uid://cjv0ydmf7kiye" path="res://weapons/melee/attack/short_sword_0.tres" id="1_1ymnn"]
+[ext_resource type="Script" path="res://scripts/weapon_melee/weapon_melee_res.gd" id="1_vn2su"]
+[ext_resource type="Resource" uid="uid://baf5skm4c7xja" path="res://weapons/melee/attack/short_sword_1.tres" id="2_dtse5"]
+[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="2_xv0ly"]
+[ext_resource type="PackedScene" uid="uid://hbyonpainxkg" path="res://models/graveyard/border-pillar.glb" id="3_85kn2"]
+[ext_resource type="Resource" uid="uid://bfp2mggj31j40" path="res://weapons/melee/attack/short_sword_2.tres" id="3_n0ujm"]
+
+[resource]
+script = ExtResource("1_vn2su")
+model = ExtResource("3_85kn2")
+position = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+attacks = Array[Resource("res://scripts/attack_res.gd")]([ExtResource("1_1ymnn"), ExtResource("2_dtse5"), ExtResource("3_n0ujm")])
+crosshair = ExtResource("2_xv0ly")
+cooldown = 0.1
+damage = 25.0
+knockback = 20
+reload_time = 0.0
+chargeable = false
+charge_time = 0.0

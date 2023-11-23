@@ -13,3 +13,6 @@ one_shot = true
 
 [node name="Charge" type="Timer" parent="."]
 one_shot = true
+
+[node name="Combo" type="Timer" parent="."]
+one_shot = true

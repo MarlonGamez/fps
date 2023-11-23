@@ -12,6 +12,9 @@ func _init(r: WeaponProjectileRes):
 	self.res = r
 	self.magazine_remaining = res.magazine_size
 
+func get_cooldown() -> float:
+	return res.cooldown
+
 func get_magazine_size() -> int:
 	return res.magazine_size
 

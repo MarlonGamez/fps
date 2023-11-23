@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var health: Label = $Health
 @onready var ammo: Label = $Ammo
 @onready var charge: ProgressBar = $Charge
+@onready var combo: ProgressBar = $Combo
 
 func _ready():
 	health.text = "%s/%s" % [player.health.health, player.health.MAX_HEALTH]
@@ -15,6 +16,7 @@ func _ready():
 	player.weapons.weapon_changed.connect(_on_bullets_updated)
 	player.weapons.fired.connect(_on_bullets_updated)
 	player.weapons.charging.connect(_on_charge_updated)
+	player.weapons.combo_time_left.connect(_on_combo_time_updated)
 
 
 func _on_health_updated(_health_delta: int):
@@ -25,3 +27,7 @@ func _on_bullets_updated(bullets):
 
 func _on_charge_updated(percent: float):
 	charge.set_value_no_signal(percent)
+
+func _on_combo_time_updated(time_left: float, combo_time: float):
+	combo.set_max(combo_time)
+	combo.set_value_no_signal(time_left)

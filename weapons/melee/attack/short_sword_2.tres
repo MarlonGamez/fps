@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="AttackRes" load_steps=6 format=3 uid="uid://bfp2mggj31j40"]
+
+[ext_resource type="Script" path="res://scripts/melee_hitbox.gd" id="1_0iaiv"]
+[ext_resource type="Script" path="res://scripts/attack_res.gd" id="2_ihmgo"]
+
+[sub_resource type="Resource" id="Resource_03va2"]
+script = ExtResource("1_0iaiv")
+delay = 0.0
+duration = 0.1
+position = Vector3(0.6, -0.2, -0.3)
+
+[sub_resource type="Resource" id="Resource_trdvd"]
+script = ExtResource("1_0iaiv")
+delay = 0.0
+duration = 0.1
+position = Vector3(0.5, -0.1, -0.5)
+
+[sub_resource type="Resource" id="Resource_kyeww"]
+script = ExtResource("1_0iaiv")
+delay = 0.0
+duration = 0.1
+position = Vector3(0.1, 2.08165e-12, -1.7)
+
+[resource]
+script = ExtResource("2_ihmgo")
+hitboxes = Array[ExtResource("1_0iaiv")]([SubResource("Resource_03va2"), SubResource("Resource_trdvd"), SubResource("Resource_kyeww")])
+damage = 35
+combo_time = 0.5
+sound = ""
