@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="WeaponProjectileRes" load_steps=4 format=3 uid="uid://cb2v8y0d50kjs"]
 
 [ext_resource type="Script" path="res://scripts/weapon_projectile/weapon_projectile_res.gd" id="1_rbxs6"]
-[ext_resource type="Texture2D" uid="uid://ce3lgq7foiusl" path="res://sprites/crosshair-repeater.png" id="1_u5h8d"]
-[ext_resource type="PackedScene" uid="uid://dd3oln1ucgqpd" path="res://models/blaster-repeater.glb" id="2_sebri"]
+[ext_resource type="Texture2D" uid="uid://ce3lgq7foiusl" path="res://assets/sprites/crosshair-repeater.png" id="1_u5h8d"]
+[ext_resource type="PackedScene" uid="uid://dd3oln1ucgqpd" path="res://assets/models/blaster-repeater.glb" id="2_sebri"]
 
 [resource]
 script = ExtResource("1_rbxs6")

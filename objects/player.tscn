@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://dl2ed4gkybggf"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_ffboj"]
-[ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://sprites/blob_shadow.png" id="2_b0fo8"]
 [ext_resource type="PackedScene" uid="uid://s8lxjnui57cx" path="res://components/hurtbox_component.tscn" id="2_jewdt"]
-[ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="4_m6ukc"]
-[ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://sounds/walking.ogg" id="5_ics1s"]
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_pg7n0"]
 [ext_resource type="Resource" uid="uid://cb2v8y0d50kjs" path="res://weapons/projectile/pistol.tres" id="6_70ut7"]
 [ext_resource type="Resource" uid="uid://bopk3lfbognrn" path="res://weapons/melee/short_sword.tres" id="6_svunb"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="8_1ynqb"]
+[ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://assets/sprites/burst_animation.tres" id="8_5igxh"]
+[ext_resource type="Texture2D" uid="uid://8ggihh27mlrr" path="res://assets/sprites/blob_shadow.png" id="9_2ies3"]
 [ext_resource type="PackedScene" uid="uid://gsxginp1rirh" path="res://components/gravity_component.tscn" id="9_kdit3"]
+[ext_resource type="AudioStream" uid="uid://cydjn1ct3hps2" path="res://assets/sounds/walking.ogg" id="10_4vwiy"]
 [ext_resource type="PackedScene" uid="uid://wtvmplhayrom" path="res://components/movement_component.tscn" id="11_papk8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kcmai"]
@@ -81,7 +81,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -1, -2.25)
 [node name="Muzzle" type="AnimatedSprite3D" parent="Head/Camera/SubViewportContainer/SubViewport/CameraItem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -0.75, -6)
 layers = 2
-sprite_frames = ExtResource("4_m6ukc")
+sprite_frames = ExtResource("8_5igxh")
 frame = 2
 
 [node name="RayCast" type="RayCast3D" parent="Head/Camera"]
@@ -92,12 +92,12 @@ collide_with_areas = true
 [node name="Shadow" type="Decal" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
 size = Vector3(1, 2, 1)
-texture_albedo = ExtResource("2_b0fo8")
+texture_albedo = ExtResource("9_2ies3")
 modulate = Color(1, 1, 1, 0.705882)
 normal_fade = 0.5
 
 [node name="SoundFootsteps" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_ics1s")
+stream = ExtResource("10_4vwiy")
 volume_db = -5.0
 autoplay = true
 

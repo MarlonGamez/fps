@@ -3,8 +3,8 @@
 [ext_resource type="Resource" uid="uid://cjv0ydmf7kiye" path="res://weapons/melee/attack/short_sword_0.tres" id="1_1ymnn"]
 [ext_resource type="Script" path="res://scripts/weapon_melee/weapon_melee_res.gd" id="1_vn2su"]
 [ext_resource type="Resource" uid="uid://baf5skm4c7xja" path="res://weapons/melee/attack/short_sword_1.tres" id="2_dtse5"]
-[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="2_xv0ly"]
-[ext_resource type="PackedScene" uid="uid://hbyonpainxkg" path="res://models/graveyard/border-pillar.glb" id="3_85kn2"]
+[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://assets/sprites/crosshair.png" id="2_xv0ly"]
+[ext_resource type="PackedScene" uid="uid://hbyonpainxkg" path="res://assets/models/graveyard/border-pillar.glb" id="3_85kn2"]
 [ext_resource type="Resource" uid="uid://bfp2mggj31j40" path="res://weapons/melee/attack/short_sword_2.tres" id="3_n0ujm"]
 
 [resource]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/weapon_melee/melee_weapon.gd" id="1_35kf8"]
 [ext_resource type="Script" path="res://scripts/melee_hitbox.gd" id="1_rr3af"]
-[ext_resource type="PackedScene" uid="uid://bfmnga7tgkbr0" path="res://models/graveyard/altar-wood.glb" id="2_7l5l2"]
+[ext_resource type="PackedScene" uid="uid://bfmnga7tgkbr0" path="res://assets/models/graveyard/altar-wood.glb" id="2_7l5l2"]
 
 [sub_resource type="Resource" id="Resource_trj52"]
 script = ExtResource("1_rr3af")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2g78tpqbyf5g"]
 
-[ext_resource type="PackedScene" uid="uid://lde2xq3vq635" path="res://models/enemy-flying.glb" id="1_3v8nl"]
+[ext_resource type="PackedScene" uid="uid://lde2xq3vq635" path="res://assets/models/enemy-flying.glb" id="1_3v8nl"]
 [ext_resource type="Script" path="res://objects/enemy.gd" id="1_jg24b"]
-[ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://sprites/burst_animation.tres" id="3_iblw5"]
+[ext_resource type="SpriteFrames" uid="uid://dbv3sy5qjatnl" path="res://assets/sprites/burst_animation.tres" id="3_ulpl5"]
 [ext_resource type="PackedScene" uid="uid://s8lxjnui57cx" path="res://components/hurtbox_component.tscn" id="4_5j7on"]
 [ext_resource type="PackedScene" uid="uid://cmdqaxywvkofp" path="res://components/health_component.tscn" id="4_k84l3"]
 [ext_resource type="PackedScene" uid="uid://bqmtrfhmtcd43" path="res://components/weapon_component.tscn" id="5_jxbra"]
@@ -26,12 +26,12 @@ target_position = Vector3(0, 0, -4)
 
 [node name="MuzzleA" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.45, 0.3, -0.4)
-sprite_frames = ExtResource("3_iblw5")
+sprite_frames = ExtResource("3_ulpl5")
 frame = 2
 
 [node name="MuzzleB" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.45, 0.3, -0.4)
-sprite_frames = ExtResource("3_iblw5")
+sprite_frames = ExtResource("3_ulpl5")
 frame = 2
 
 [node name="Timer" type="Timer" parent="."]

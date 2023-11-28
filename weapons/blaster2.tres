@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ProjectileWeapon" load_steps=4 format=3 uid="uid://fhrm4xnrxxum"]
 
-[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://sprites/crosshair.png" id="1_8pfqw"]
-[ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://models/blaster.glb" id="2_vd5sk"]
+[ext_resource type="Texture2D" uid="uid://2jld33y6h5pq" path="res://assets/sprites/crosshair.png" id="1_8pfqw"]
+[ext_resource type="PackedScene" uid="uid://b2p7bbkuxf7m" path="res://assets/models/blaster.glb" id="2_vd5sk"]
 [ext_resource type="Script" path="res://scripts/weapon/projectile_weapon.gd" id="3_d2qrr"]
 
 [resource]
