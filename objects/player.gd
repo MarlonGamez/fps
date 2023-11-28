@@ -73,7 +73,7 @@ func _physics_process(delta):
 	camera.position.y = lerp(camera.position.y, 0.0, delta * 5)
 
 	if is_on_floor() and vert_velocity > 1 and !previously_floored: # Landed
-		Audio.play("sounds/land.ogg")
+		Audio.play("assets/sounds/land.ogg")
 		camera.position.y = -0.1
 
 	previously_floored = is_on_floor()
@@ -120,7 +120,7 @@ func handle_controls(_delta):
 	if is_on_floor():
 		movement.reset_jump()
 	if Input.is_action_just_pressed("jump"):
-		if movement.jump("sounds/jump_a.ogg, sounds/jump_b.ogg, sounds/jump_c.ogg"):
+		if movement.jump("assets/sounds/jump_a.ogg, assets/sounds/jump_b.ogg, assets/sounds/jump_c.ogg"):
 			vert_velocity = -movement.jump_strength
 
 	# Weapon switching
@@ -161,7 +161,7 @@ func tween_weapon(duration: float, callback: Callable = Callable()):
 
 # Initiates the weapon changing animation (tween)
 func initiate_change_weapon():
-	Audio.play("sounds/weapon_change.ogg")
+	Audio.play("assets/sounds/weapon_change.ogg")
 	tween_weapon(0.1, change_weapon.bind(weapons.curr_i + 1))
 
 # Switches the weapon model (off-screen)

@@ -33,10 +33,10 @@ func _process(delta):
 
 # Take damage
 func _on_health_damaged(_amount):
-	Audio.play("sounds/enemy_hurt.ogg")
+	Audio.play("assets/sounds/enemy_hurt.ogg")
 
 
 # Destroy the enemy when out of health
 func _on_health_depleted():
-	Audio.play("sounds/enemy_destroy.ogg")
+	Audio.play("assets/sounds/enemy_destroy.ogg")
 	queue_free()
